@@ -113,11 +113,11 @@ contract DebentureERC20 is IERC20, Titulo, Ownable {
     string private tokenName;
     string private tokenSymbol;
     uint256 private tokenTotalSupply;
+    uint256 public decimals;
     
     string _emissor;
     uint256 immutable _dataEmissao;
     uint256 _valor;
-    uint8 immutable _decimais;
     uint256 _prazoPagamento;
     uint16 _fracoes;
     string public rating;
@@ -128,11 +128,11 @@ contract DebentureERC20 is IERC20, Titulo, Ownable {
         _emissor = "Empresa de Energia Nuclear S/A";
         _dataEmissao = block.timestamp;
         _valor = 100000000;
-        _decimais = 2;
         _prazoPagamento = _dataEmissao + 90 days;
         rating = "BBB-";
         _fracoes = 1000;
-        mint(msg.sender, (1000000000 * (10 ** _decimais)));
+        decimals = 2;
+        mint(msg.sender, (1000000000 * (10 ** decimals)));
         emit NovoPrazoPagamento(_dataEmissao, _prazoPagamento);
     }
     mapping (address=>uint256) balances;
